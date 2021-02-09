@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "Simple React Native chrono app",
+    "githubUrl": "https://github.com/carlosvchrdevelop/material-chrono"
   }
 }
