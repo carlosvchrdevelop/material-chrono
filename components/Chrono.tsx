@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Platform, Text, TouchableHighlight, TouchableNativeFeedback } from 'react-native';
 import { parseMillis, parseTime } from '../lib/timer_util';
-import styles from './Chrono.styles';
+import styles, { secondaryColor } from './Chrono.styles';
 import useInterval from '../hooks/useInterval';
 
 const Chrono = () => {
@@ -28,31 +28,16 @@ const Chrono = () => {
         );
     };
 
-    const timerComponent = () => {
-        if(Platform.OS === 'android'){
-            return (
-                <TouchableNativeFeedback 
-                    onPress={() => setPaused((isPaused) => !isPaused)}
-                    onLongPress={reset}
-                    style={styles.chronoContainer}
-                >
-                    {chronoContent()}
-                </TouchableNativeFeedback>
-            );
-        }else{
-            return (
-                <TouchableHighlight 
-                    onPress={() => setPaused((isPaused) => !isPaused)}
-                    onLongPress={reset}
-                    style={styles.chronoContainer}
-                >
-                    {chronoContent()}
-                </TouchableHighlight>
-            );
-        }
-    };
-
-    return <>{timerComponent()}</>;
+    return (
+        <TouchableHighlight 
+            onPress={() => setPaused((isPaused) => !isPaused)}
+            onLongPress={reset}
+            style={styles.chronoContainer}
+            underlayColor={secondaryColor}
+        >
+            {chronoContent()}
+        </TouchableHighlight>
+    );
 }
 
 export default Chrono;
