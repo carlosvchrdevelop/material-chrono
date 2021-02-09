@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Platform, Text, TouchableHighlight, TouchableNativeFeedback } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { parseMillis, parseTime } from '../lib/timer_util';
 import styles from './Chrono.styles';
 import useInterval from '../hooks/useInterval';
 
 const Chrono = () => {
     const [timer, setTimer] = useState(0);
-    const [paused, setPaused] = useState(false);
+    const [paused, setPaused] = useState(true);
 
     const changeTime = () => !paused && setTimer((oldState) => oldState + 100);
 
@@ -19,18 +18,14 @@ const Chrono = () => {
     };
 
     const chronoContent = () => {
-        if (timer === 0) {
-            return <Ionicons name='timer' size={172} color='white' />;
-        }else{
-            return (
-                <Text style={styles.chronoText}>
-                    {parseTime(timer)}
-                    <Text style={styles.chronoMillis}>
-                        {parseMillis(timer)}
-                    </Text>
+        return (
+            <Text style={styles.chronoText}>
+                {parseTime(timer)}
+                <Text style={styles.chronoMillis}>
+                    {parseMillis(timer)}
                 </Text>
-            );
-        }
+            </Text>
+        );
     };
 
     const timerComponent = () => {

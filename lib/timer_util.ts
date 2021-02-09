@@ -10,7 +10,6 @@ export const splitTime = (time: number) => {
 };
 
 export const parseTime = (time: number): string => {
-    if(time === 0) return ''
     if(time >= HORA_MILIS * 60) return 'Resetéame';
 
     const { horas, minutos, segundos } = splitTime(time);
@@ -23,7 +22,6 @@ export const parseTime = (time: number): string => {
 };
 
 export const parseMillis = (time: number): string => {
-    if(time === 0) return '';
     if(time >= HORA_MILIS * 60) return '';
     const { horas, minutos, segundos } = splitTime(time);
     return String(time - horas * HORA_MILIS - minutos * MINUTO_MILIS - segundos * SEGUNDO_MILIS).substring(0,1);
